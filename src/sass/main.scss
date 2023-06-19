@@ -1,0 +1,380 @@
+@use "./reset";
+
+//===========================
+// 		Font Face Setup
+//===========================
+
+@font-face {
+  font-family: "Roboto";
+  font-display: swap;
+  font-weight: 400;
+  src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto";
+  font-display: swap;
+  font-weight: 700;
+  src: url("../assets/fonts/Roboto-Bold.ttf") format("truetype");
+}
+
+//===========================
+// 	 	CSS Variable Setup
+//===========================
+
+:root {
+  // Colors
+  --primary-clr-accent: 4, 100%, 67%;
+  --primary-clr: hsl(var(--primary-clr-accent));
+  --secondary-clr-accent: 235, 18%, 26%;
+  --secondary-clr: hsl(var(--secondary-clr-accent));
+
+  --font-clr: hsl(234, 29%, 20%);
+  --grey: hsl(231, 7%, 60%);
+  --white: hsl(0, 0%, 100%);
+
+  // Fonts
+  --font-roboto: "Roboto", sans-serif;
+  --fw-400: 400;
+  --fw-700: 700;
+  --f-base: 1rem;
+
+  // Headings
+  --heading-1: 3rem;
+  --heading-2: 2.5rem;
+  --sub-heading-1: 0.9375rem;
+  --sub-heading-2: 0.875rem;
+
+  // Width
+  --max-width: 59.375rem;
+}
+
+// ===================
+// Scroll Customs
+// ===================
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 3.75rem;
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--secondary-clr);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--primary-clr);
+    border-radius: 1rem;
+  }
+}
+
+@supports (scrollbar-color: var(--primary-clr) var(--secondary-clr)) {
+  html {
+    scrollbar-color: var(--primary-clr) var(--secondary-clr);
+    scrollbar-width: thin;
+  }
+}
+
+body {
+  font-family: var(--font-roboto);
+  font-size: var(--f-base);
+
+  min-height: 100vh;
+
+  overflow-x: hidden;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+.main__title {
+  font-size: clamp(var(--heading-2), 5vw + var(--f-base), var(--heading-1));
+  font-weight: var(--fw-700);
+  color: var(--font-clr);
+  line-height: 1.1;
+}
+
+.base__font {
+  font-size: clamp(var(--sub-heading-2), 1vw + var(--f-base), var(--f-base));
+  font-weight: var(--fw-400);
+  color: var(--font-clr);
+  line-height: 1.5;
+}
+
+.sm__font {
+  font-size: clamp(
+    var(--sub-heading-2),
+    0.7vw + var(--f-base),
+    var(--sub-heading-1)
+  );
+  font-weight: var(--fw-700);
+  color: var(--font-clr);
+  line-height: 2.3;
+}
+
+.errors {
+  font-size: clamp(
+    var(--sub-heading-2),
+    0.7vw + var(--f-base),
+    var(--sub-heading-1)
+  );
+  font-weight: var(--fw-700);
+  color: var(--primary-clr);
+  line-height: 1;
+  transition: 250ms ease-out;
+}
+
+#email {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+
+  width: 100%;
+
+  font-size: var(--f-base);
+  font-weight: var(--fw-400);
+  color: var(--font-clr);
+
+  border: 0.125rem solid var(--grey);
+  border-radius: 0.5rem;
+
+  padding: 1rem 0.5rem 1rem 1rem;
+}
+
+#email.errors {
+  border: 0.125rem solid var(--primary-clr);
+  color: var(--primary-clr);
+  background-color: hsl(var(--primary-clr-accent), 0.15);
+}
+
+.btn {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+
+  width: 100%;
+
+  font-size: var(--sub-heading-1);
+  font-weight: var(--fw-700);
+  color: var(--white);
+
+  background-color: var(--font-clr);
+  border-radius: 0.5rem;
+
+  padding: 1rem 2rem;
+
+  transition: background-color 100ms ease-in-out, box-shadow 250ms ease-in-out;
+  cursor: pointer;
+
+  &:is(:hover, :focus) {
+    background-color: var(--primary-clr);
+    box-shadow: 0 0.75rem 1.25rem 0 hsl(var(--primary-clr-accent), 0.3);
+  }
+}
+
+//==========================
+//      Main contents
+//==========================
+
+.main-container {
+  width: min(100%, var(--max-width));
+
+  background-color: var(--white);
+}
+
+.main__img {
+  width: 100%;
+  max-width: 23.4375rem;
+  height: 17.75rem;
+
+  background-image: url(../../illustration-sign-up-mobile.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  margin-inline: auto;
+}
+
+.main__description > * + * {
+  margin-block-start: 1em;
+}
+
+.main__description {
+  --max-width: 25rem;
+  width: min(100%, var(--max-width));
+
+  padding: 2.5rem 1.25rem;
+  margin-inline: auto;
+}
+
+.checklist-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  & .main__checklist {
+    display: flex;
+    gap: 0.75rem;
+  }
+}
+
+.main__form > :not(:first-child) {
+  margin-block-start: 1.25rem;
+}
+
+.main__form {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.main__form-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+//==========================
+//      Success contents
+//==========================
+
+.success {
+  --max-width: 27.5rem;
+  width: min(100%, var(--max-width));
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--white);
+
+  margin-inline: auto;
+  padding: 6.25rem 2.5rem 2.5rem;
+
+  & .base__font {
+    flex: 1 1 0%;
+  }
+}
+
+.success > * + * {
+  margin-block-start: 1.5rem;
+}
+
+.valid-email {
+  font-size: var(--sub-heading-2);
+  font-weight: var(--fw-700);
+  color: var(--secondary-clr);
+}
+
+//================
+// 		 Footer
+//================
+
+.attribution {
+  text-align: center;
+  margin: 3rem 0;
+
+  & p {
+    font-size: var(--f-base);
+    color: var(--font-clr);
+    & span {
+      font-size: 1.75rem;
+      color: var(--primary-clr);
+    }
+  }
+
+  & a {
+    font-size: 1.25rem;
+    color: var(--primary-clr);
+    transition: text-decoration 250ms ease-in-out;
+
+    &:is(:hover, :focus) {
+      text-decoration: underline;
+    }
+  }
+}
+
+//===========================
+// 	 		Responsive 768px
+//===========================
+
+@media only screen and (min-width: 48em) {
+  body {
+    display: grid;
+    place-items: center;
+
+    min-height: 100vh;
+
+    background-color: var(--secondary-clr);
+    padding: 1.25rem;
+    overflow: hidden;
+  }
+
+  .main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    box-shadow: 0 0 1.25rem 1.25rem rgba(0, 0, 0, 0.15);
+    border-radius: 1.5rem;
+
+    padding: 1.25rem;
+    padding-inline-start: 3rem;
+    overflow: hidden;
+  }
+
+  .main__img {
+    width: 25rem;
+    height: 37.0625rem;
+    max-width: none;
+
+    background-image: url(../../illustration-sign-up-desktop.svg);
+
+    margin-inline: 0;
+  }
+
+  .main__description > * + * {
+    margin-block-start: 1.25em;
+  }
+
+  .main__description {
+    width: 50%;
+    max-width: none;
+    max-height: none;
+
+    margin-inline: 0;
+  }
+
+  .success {
+    min-height: auto;
+
+    box-shadow: 0 0 1.25rem 1.25rem rgba(0, 0, 0, 0.15);
+    border-radius: 1.75rem;
+
+    padding: 1.875rem 3.125rem 2.5rem;
+
+    & .base__font {
+      flex-grow: 0;
+    }
+  }
+
+  .attribution {
+    position: absolute;
+    bottom: 0.625rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+
+    & p {
+      color: var(--white);
+    }
+  }
+}
