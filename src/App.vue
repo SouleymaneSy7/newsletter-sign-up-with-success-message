@@ -2,7 +2,7 @@
   <!-- Success Message Start -->
   <section class="success" v-if="success">
     <div class="success__img">
-      <img src="../icon-success.svg" alt="Success Icons" />
+      <img src="../public/icon-success.svg" alt="Success Icons" />
     </div>
 
     <h2 class="main__title">Thanks for subscribing!</h2>
